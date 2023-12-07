@@ -1,0 +1,33 @@
+name: rcg
+channels:
+  - pytorch
+  - defaults
+dependencies:
+  - python=3.8.5
+  - pip=20.3
+  - cudatoolkit=10.2
+  - pytorch=1.7.1
+  - torchvision=0.8.2
+  - numpy=1.19.2
+  - pip:
+    - albumentations==0.4.3
+    - opencv-python==4.1.2.30
+    - pudb==2019.2
+    - imageio==2.9.0
+    - imageio-ffmpeg==0.4.2
+    - pytorch-lightning==1.4.2
+    - torchmetrics==0.5.0
+    - setuptools==59.5.0
+    - omegaconf==2.1.1
+    - test-tube>=0.7.5
+    - streamlit>=0.73.1
+    - einops==0.3.0
+    - more-itertools>=8.0.0
+    - transformers==4.3.1
+    - timm==0.3.2
+    - protobuf==3.20
+    - submitit==1.3.3
+    - torch-fidelity
+    - -e git+https://github.com/openai/CLIP.git@main#egg=clip
+    - -e git+https://github.com/CompVis/taming-transformers.git@master#egg=taming-transformers
+    - -e .

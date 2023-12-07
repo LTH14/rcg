@@ -1,0 +1,16 @@
+*.egg-info
+__pycache__
+
+.nfs*
+.idea/
+.DS_store
+
+src/
+vqgan-ckpts/
+final_ckpts/
+
+# these are links
+cache
+pretrained_enc_ckpts
+vqgan_jax_weakaug.ckpt
+imagenet-val

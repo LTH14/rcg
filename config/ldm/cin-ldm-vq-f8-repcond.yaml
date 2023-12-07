@@ -1,0 +1,85 @@
+model:
+  base_learning_rate: 1.0e-06
+  target: pixel_generator.ldm.models.diffusion.ddpm.LatentDiffusion
+  params:
+    linear_start: 0.0015
+    linear_end: 0.0195
+    num_timesteps_cond: 1
+    log_every_t: 200
+    timesteps: 1000
+    first_stage_key: image
+    cond_stage_key: class_label
+    class_cond: false
+    image_size: 32
+    channels: 4
+    cond_stage_trainable: true
+    conditioning_key: crossattn
+    unet_config:
+      target: pixel_generator.ldm.modules.diffusionmodules.openaimodel.UNetModel
+      params:
+        image_size: 32
+        in_channels: 4
+        out_channels: 4
+        model_channels: 256
+        attention_resolutions:
+        #note: this isn\t actually the resolution but
+        # the downsampling factor, i.e. this corresnponds to
+        # attention on spatial resolution 8,16,32, as the
+        # spatial reolution of the latents is 32 for f8
+        - 4
+        - 2
+        - 1
+        num_res_blocks: 2
+        channel_mult:
+        - 1
+        - 2
+        - 4
+        num_head_channels: 32
+        use_spatial_transformer: true
+        transformer_depth: 1
+        context_dim: 256
+    first_stage_config:
+      target: pixel_generator.ldm.models.autoencoder.VQModelInterface
+      params:
+        embed_dim: 4
+        n_embed: 16384
+        ckpt_path: vqgan-ckpts/ldm_vqgan_f8_16384/checkpoints/last.ckpt
+        ddconfig:
+          double_z: false
+          z_channels: 4
+          resolution: 256
+          in_channels: 3
+          out_ch: 3
+          ch: 128
+          ch_mult:
+          - 1
+          - 2
+          - 2
+          - 4
+          num_res_blocks: 2
+          attn_resolutions:
+          - 32
+          dropout: 0.0
+        lossconfig:
+          target: torch.nn.Identity
+    cond_stage_config:
+      target: pixel_generator.ldm.modules.encoders.modules.ClassEmbedder
+      params:
+        embed_dim: 256
+        n_classes: 1000
+        key: class_label
+    pretrained_enc_config:
+      params:
+        pretrained_enc_arch: mocov3_vit_base
+        pretrained_enc_path: pretrained_enc_ckpts/mocov3/vitb.pth.tar
+        pretrained_enc_withproj: True
+    pretrained_rdm_ckpt: final_ckpts/rdm-mocov3vitb.pth
+    pretrained_rdm_cfg: config/rdm/mocov3vitb_simplemlp_l12_w1536.yaml
+    generation_config:
+      params:
+        gen_bsz: 16
+        rdm_steps: 250
+        rdm_eta: 1.0
+        ldm_steps: 200
+        eta: 1.0
+        num_images: 50000
