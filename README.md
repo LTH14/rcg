@@ -45,7 +45,7 @@ git clone https://github.com/LTH14/rcg.git
 cd rcg
 ```
 Use [this link](https://drive.google.com/file/d/13S_unB87n6KKuuMdyMnyExW0G1kplTbP/view?usp=sharing)
-to download the pre-trained VQGAN tokenzier as ```vqgan_jax_strongaug.ckpt```.
+to download the pre-trained VQGAN tokenizer as ```vqgan_jax_strongaug.ckpt```.
 
 Use [this link](https://dl.fbaipublicfiles.com/moco-v3/vit-b-300ep/vit-b-300ep.pth.tar) 
 to download the pre-trained moco v3 ViT-B encoder and name it as ```pretrained_enc_ckpts/mocov3/vitb.pth.tar```.
