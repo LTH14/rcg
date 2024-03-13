@@ -178,6 +178,7 @@ def main(args):
     if args.evaluate:
         print("Start evaluating")
         gen_img(model, args, 0, batch_size=args.gen_bsz, log_writer=log_writer)
+        return
 
     print(f"Start training for {args.epochs} epochs")
     start_time = time.time()

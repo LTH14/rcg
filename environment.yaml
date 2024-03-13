@@ -23,11 +23,14 @@ dependencies:
     - streamlit>=0.73.1
     - einops==0.3.0
     - more-itertools>=8.0.0
-    - transformers==4.3.1
     - timm==0.3.2
     - protobuf==3.20
     - submitit==1.3.3
-    - torch-fidelity
+    - diffusers==0.7.0
+    - accelerate==0.10.0
+    - huggingface-hub==0.21.4
+    - transformers==4.18.0
+    - -e git+https://github.com/LTH14/torch-fidelity.git@master#egg=torch-fidelity
     - -e git+https://github.com/openai/CLIP.git@main#egg=clip
     - -e git+https://github.com/CompVis/taming-transformers.git@master#egg=taming-transformers
     - -e .
