@@ -185,7 +185,7 @@ Class-conditional generation examples:
 To train a DiT-L conditioned on Moco v3 ViT-B representations, using 128 V100 GPUs for 400 epochs:
 ```
 python -m torch.distributed.launch --nproc_per_node=8 --nnodes=16 --node_rank=0 \
-main_adm.py \
+main_dit.py \
 --rep_cond --rep_dim 256 \
 --pretrained_enc_arch mocov3_vit_base \
 --pretrained_enc_path pretrained_enc_ckpts/mocov3/vitb.pth.tar \
@@ -199,7 +199,7 @@ main_adm.py \
 --dist_url tcp://${MASTER_SERVER_ADDRESS}:2214
 ```
 
-**Note**: sometimes ```batch_size=16``` causes out of memory for DiT-XL. Changing it to 12 or 14 has negligible effect on performance.
+**Note**: sometimes ```batch_size=16``` causes out of memory for DiT-XL. Changing it to 12 or 14 has a negligible effect on performance.
 
 **Resume**: set ```--resume``` to the ```OUTPUT_DIR``` where ```checkpoint-last.pth``` is stored.
 
