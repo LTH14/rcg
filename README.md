@@ -25,12 +25,14 @@ long-standing performance gap between unconditional and class-conditional image 
 
 ### March 2024
 
-- Update FID evaluation and results to follow [ADM suite](https://github.com/openai/guided-diffusion/tree/main/evaluations) by hard-coding ADM statistics in ```torch-fidelity```.
+- Update FID evaluation and results to follow [ADM suite](https://github.com/openai/guided-diffusion/tree/main/evaluations) by providing statistics in ```torch-fidelity```.
 The modified ```torch-fidelity``` could be installed via 
 
 ```
 pip install -e git+https://github.com/LTH14/torch-fidelity.git@master#egg=torch-fidelity
 ```
+
+To provide statistics, set ```fid_statistics_file``` to your statistics file in ```torch_fidelity.calculate_metrics``` in the engine files.
 
 - Update an ADM checkpoint trained for 400 epochs (same as the original paper).
 - Include training scripts and pre-trained checkpoint (400 epochs) for DiT-XL with RCG.
