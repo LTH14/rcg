@@ -4,7 +4,7 @@
   <img src="figures/method.png" width="560">
 </p>
 
-This is a PyTorch/GPU implementation of the paper [Return of Unconditional Generation: A Self-supervised Representation Generation Method](https://arxiv.org/abs/2312.03701):
+This is a PyTorch/GPU implementation of the paper [Return of Unconditional Generation: A Self-supervised Representation Generation Method](https://arxiv.org/abs/2312.03701) (Neurips 2024 Oral Presentation):
 ```
 @Article{RCG2023,
   author  = {Tianhong Li and Dina Katabi and Kaiming He},
