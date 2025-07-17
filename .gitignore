@@ -14,3 +14,47 @@ cache
 pretrained_enc_ckpts
 vqgan_jax_weakaug.ckpt
 imagenet-val
+
+# Testing and coverage
+.pytest_cache/
+.coverage
+htmlcov/
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.tox/
+.nox/
+
+# Claude settings
+.claude/*
+
+# Virtual environments
+venv/
+ENV/
+env/
+.venv/
+
+# Build artifacts
+build/
+dist/
+*.egg
+*.whl
+
+# IDE files
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json

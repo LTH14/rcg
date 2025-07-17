@@ -1,0 +1,161 @@
+[tool.poetry]
+name = "rcg"
+version = "0.0.1"
+description = "Representation-Conditioned image Generation"
+authors = ["RCG Team"]
+readme = "README.md"
+license = "MIT"
+packages = [{include = "*", from = "."}]
+
+[tool.poetry.dependencies]
+python = "^3.8.5"
+torch = ">=1.7.1"
+torchvision = ">=0.8.2"
+numpy = ">=1.19.2"
+albumentations = ">=0.4.3"
+opencv-python = ">=4.1.2.30"
+imageio = ">=2.9.0"
+imageio-ffmpeg = ">=0.4.2"
+pytorch-lightning = ">=1.4.2"
+torchmetrics = ">=0.5.0"
+omegaconf = ">=2.1.1"
+test-tube = ">=0.7.5"
+streamlit = ">=0.73.1"
+einops = ">=0.3.0"
+more-itertools = ">=8.0.0"
+timm = ">=0.3.2"
+protobuf = ">=3.20"
+submitit = ">=1.3.3"
+diffusers = ">=0.7.0"
+accelerate = ">=0.10.0"
+huggingface-hub = ">=0.21.4"
+transformers = ">=4.18.0"
+tqdm = "*"
+setuptools = ">=59.5.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.0"
+pytest-cov = "^4.1.0"
+pytest-mock = "^3.11.0"
+pytest-xdist = "^3.3.0"
+pytest-timeout = "^2.1.0"
+black = "^23.0.0"
+isort = "^5.12.0"
+flake8 = "^6.0.0"
+mypy = "^1.4.0"
+pudb = ">=2019.2"
+
+[tool.poetry.scripts]
+test = "pytest:main"
+tests = "pytest:main"
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*", "*Tests"]
+python_functions = ["test_*"]
+addopts = [
+    "--strict-markers",
+    "--strict-config",
+    "--verbose",
+    "--tb=short",
+    "--cov=.",
+    "--cov-report=term-missing:skip-covered",
+    "--cov-report=html:htmlcov",
+    "--cov-report=xml:coverage.xml",
+    # Coverage threshold disabled for initial setup - enable when adding actual tests
+    # "--cov-fail-under=80",
+    "-p no:warnings",
+]
+markers = [
+    "unit: marks tests as unit tests (fast, isolated)",
+    "integration: marks tests as integration tests (may require external resources)",
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+]
+
+[tool.coverage.run]
+source = ["."]
+omit = [
+    "*/tests/*",
+    "*/test_*",
+    "*/__pycache__/*",
+    "*/site-packages/*",
+    "setup.py",
+    "*/migrations/*",
+    "*/.venv/*",
+    "*/venv/*",
+    "*/env/*",
+    "*/.tox/*",
+    "*/.eggs/*",
+    "*/dist/*",
+    "*/build/*",
+    "*/.git/*",
+    "*/__init__.py",
+    "*/conftest.py",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "def __str__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+    "if typing.TYPE_CHECKING:",
+    "@abstractmethod",
+    "@abc.abstractmethod",
+]
+precision = 2
+show_missing = true
+skip_covered = false
+
+[tool.coverage.html]
+directory = "htmlcov"
+
+[tool.coverage.xml]
+output = "coverage.xml"
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+include_trailing_comma = true
+force_grid_wrap = 0
+use_parentheses = true
+ensure_newline_before_comments = true
+line_length = 88
+skip_gitignore = true
+
+[tool.black]
+line-length = 88
+target-version = ['py38']
+include = '\.pyi?$'
+extend-exclude = '''
+(
+  /(
+      \.eggs
+    | \.git
+    | \.hg
+    | \.mypy_cache
+    | \.tox
+    | \.venv
+    | _build
+    | buck-out
+    | build
+    | dist
+  )/
+)
+'''
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false
+ignore_missing_imports = true
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
